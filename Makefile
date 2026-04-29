@@ -1,8 +1,8 @@
 # SPDX-License-Identifier: GPL-2.0
 VERSION = 7
-PATCHLEVEL = 1
+PATCHLEVEL = 0
 SUBLEVEL = 0
-EXTRAVERSION = -rc1
+EXTRAVERSION =
 NAME = Baby Opossum Posse
 
 # *DOCUMENTATION*
@@ -657,8 +657,6 @@ export RCS_FIND_IGNORE := \( -name SCCS -o -name BitKeeper -o -name .svn -o    \
 
 # Basic helpers built in scripts/basic/
 PHONY += scripts_basic
-scripts_basic: KBUILD_HOSTCFLAGS := $(KBUILD_HOSTCFLAGS)
-scripts_basic: KBUILD_HOSTLDFLAGS := $(KBUILD_HOSTLDFLAGS)
 scripts_basic:
 	$(Q)$(MAKE) $(build)=scripts/basic
 
@@ -1709,13 +1707,16 @@ MRPROPER_FILES += include/config include/generated          \
 #
 clean: private rm-files := $(CLEAN_FILES)
 
-PHONY += archclean vmlinuxclean
+PHONY += archclean vmlinuxclean kconfirm_clean
 
 vmlinuxclean:
 	$(Q)$(CONFIG_SHELL) $(srctree)/scripts/link-vmlinux.sh clean
 	$(Q)$(if $(ARCH_POSTLINK), $(MAKE) -f $(ARCH_POSTLINK) clean)
 
-clean: archclean vmlinuxclean resolve_btfids_clean objtool_clean
+kconfirm_clean:
+	$(Q)$(MAKE) -C scripts/kconfirm clean
+
+clean: archclean vmlinuxclean resolve_btfids_clean objtool_clean kconfirm_clean
 
 # mrproper - Delete all generated files, including .config
 #
@@ -2225,7 +2226,7 @@ endif
 # Scripts to check various things for consistency
 # ---------------------------------------------------------------------------
 
-PHONY += includecheck versioncheck coccicheck
+PHONY += includecheck versioncheck coccicheck kconfirm
 
 includecheck:
 	find $(srctree)/* $(RCS_FIND_IGNORE) \
@@ -2239,6 +2240,9 @@ versioncheck:
 
 coccicheck:
 	$(Q)$(BASH) $(srctree)/scripts/$@
+
+kconfirm:
+	$(Q)$(MAKE) -C scripts/kconfirm
 
 PHONY += checkstack kernelrelease kernelversion image_name
 

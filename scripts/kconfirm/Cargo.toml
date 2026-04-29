@@ -1,0 +1,21 @@
+[workspace]
+members = ["kconfirm-lib", "kconfirm-linux"]
+resolver = "3"
+
+[workspace.package]
+license = "GPL-2.0-only"
+description = "A static analysis tool for Kconfig"
+keywords = ["kconfig", "static", "analysis", "detect"]
+categories = ["development-tools", "config", "command-line-utilities"]
+exclude = ["assets/"]
+version = "0.7.0"
+edition = "2024"
+rust-version = "1.85.0"
+
+[workspace.dependencies]
+nom-kconfig = "0.10"
+
+log = { version = "0.4", default-features = false }
+env_logger = { version = "0.11", default-features = false }
+
+clap = { version = "4.6", default-features = false, features = ["std", "derive"] }
