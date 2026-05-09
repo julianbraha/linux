@@ -1,0 +1,112 @@
+[dependencies.arbitrary]
+default-features = false
+optional = true
+version = "1.0"
+
+[dependencies.borsh]
+default-features = false
+optional = true
+version = "1.2"
+
+[dependencies.equivalent]
+default-features = false
+version = "1.0"
+
+[dependencies.hashbrown]
+default-features = false
+version = "0.17"
+
+[dependencies.quickcheck]
+default-features = false
+optional = true
+version = "1.0"
+
+[dependencies.rayon]
+optional = true
+version = "1.9"
+
+[dependencies.serde_core]
+default-features = false
+optional = true
+version = "1.0.220"
+
+[dependencies.sval]
+default-features = false
+optional = true
+version = "2"
+
+[dev-dependencies.fastrand]
+default-features = false
+version = "2"
+
+[dev-dependencies.fnv]
+version = "1.0"
+
+[dev-dependencies.itertools]
+version = "0.14"
+
+[dev-dependencies.quickcheck]
+default-features = false
+version = "1.1"
+
+[dev-dependencies.serde]
+default-features = false
+features = ["derive"]
+version = "1.0"
+
+[features]
+default = ["std"]
+serde = ["dep:serde_core", "dep:serde"]
+std = []
+test_debug = []
+
+[lib]
+bench = false
+name = "indexmap"
+path = "src/lib.rs"
+
+[lints.clippy]
+style = "allow"
+
+[lints.rust]
+private-bounds = "deny"
+private-interfaces = "deny"
+rust-2018-idioms = "warn"
+unnameable-types = "deny"
+unreachable-pub = "deny"
+unsafe-code = "deny"
+
+[package]
+autobenches = false
+autobins = false
+autoexamples = false
+autolib = false
+autotests = false
+categories = ["data-structures", "no-std"]
+description = "A hash table with consistent order and fast iteration."
+documentation = "https://docs.rs/indexmap/"
+edition = "2024"
+keywords = ["hashmap", "no_std"]
+license = "Apache-2.0 OR MIT"
+name = "indexmap"
+readme = "README.md"
+repository = "https://github.com/indexmap-rs/indexmap"
+rust-version = "1.85"
+version = "2.14.0"
+
+[package.metadata.docs.rs]
+features = ["arbitrary", "quickcheck", "serde", "borsh", "rayon", "sval"]
+rustdoc-args = ["--cfg", "docsrs"]
+
+[package.metadata.release]
+allow-branch = ["main"]
+sign-tag = true
+tag-name = "{{version}}"
+
+[profile.bench]
+debug = 2
+
+[target."cfg(any())".dependencies.serde]
+default-features = false
+optional = true
+version = "1.0.220"

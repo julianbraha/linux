@@ -1,0 +1,19 @@
+[lib]
+name = "equivalent"
+path = "src/lib.rs"
+
+[package]
+autobenches = false
+autobins = false
+autoexamples = false
+autolib = false
+autotests = false
+categories = ["data-structures", "no-std"]
+description = "Traits for key comparison in maps."
+keywords = ["hashmap", "no_std"]
+license = "Apache-2.0 OR MIT"
+name = "equivalent"
+readme = "README.md"
+repository = "https://github.com/indexmap-rs/equivalent"
+rust-version = "1.6"
+version = "1.0.2"

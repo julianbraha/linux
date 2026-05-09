@@ -1,0 +1,33 @@
+[dev-dependencies.criterion]
+version = "0.3"
+
+[features]
+bench = []
+default = []
+no_std = []
+
+[lib]
+name = "unicode_xid"
+path = "src/lib.rs"
+
+[package]
+authors = ["erick.tryzelaar <erick.tryzelaar@gmail.com>", "kwantam <kwantam@gmail.com>", "Manish Goregaokar <manishsmail@gmail.com>"]
+autobenches = false
+autobins = false
+autoexamples = false
+autotests = false
+description = """
+Determine whether characters have the XID_Start
+or XID_Continue properties according to
+Unicode Standard Annex #31.
+"""
+documentation = "https://unicode-rs.github.io/unicode-xid"
+exclude = ["/.github/**", "/scripts/*"]
+homepage = "https://github.com/unicode-rs/unicode-xid"
+keywords = ["text", "unicode", "xid"]
+license = "MIT OR Apache-2.0"
+name = "unicode-xid"
+readme = "README.md"
+repository = "https://github.com/unicode-rs/unicode-xid"
+rust-version = "1.17"
+version = "0.2.6"

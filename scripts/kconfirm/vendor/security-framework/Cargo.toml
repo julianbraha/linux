@@ -1,0 +1,106 @@
+[badges.maintenance]
+status = "looking-for-maintainer"
+
+[dependencies.bitflags]
+version = "2.11"
+
+[dependencies.core-foundation]
+version = "0.10"
+
+[dependencies.core-foundation-sys]
+version = "0.8.6"
+
+[dependencies.libc]
+version = "0.2.139"
+
+[dependencies.log]
+optional = true
+version = "0.4.20"
+
+[dependencies.security-framework-sys]
+default-features = false
+version = "2.17"
+
+[dev-dependencies.env_logger]
+version = "0.11"
+
+[dev-dependencies.hex]
+version = "0.4.3"
+
+[dev-dependencies.tempfile]
+version = "3.12.0"
+
+[dev-dependencies.time]
+version = "0.3.23"
+
+[dev-dependencies.x509-parser]
+version = "0.18"
+
+[features]
+OSX_10_12 = []
+OSX_10_13 = []
+OSX_10_14 = []
+OSX_10_15 = ["security-framework-sys/OSX_10_15"]
+alpn = []
+default = ["OSX_10_14", "alpn", "session-tickets"]
+job-bless = []
+macos-12 = ["security-framework-sys/macos-12"]
+nightly = []
+session-tickets = []
+sync-keychain = ["OSX_10_13"]
+
+[lib]
+name = "security_framework"
+path = "src/lib.rs"
+
+[lints.clippy]
+cast_possible_truncation = "allow"
+cast_possible_wrap = "allow"
+cast_sign_loss = "allow"
+default_trait_access = "allow"
+doc_markdown = "allow"
+if_not_else = "allow"
+inline_always = "allow"
+items_after_statements = "allow"
+iter_not_returning_iterator = "allow"
+map_unwrap_or = "allow"
+missing_errors_doc = "allow"
+missing_panics_doc = "allow"
+module_name_repetitions = "allow"
+needless_continue = "allow"
+needless_pass_by_value = "allow"
+redundant_closure_for_method_calls = "allow"
+similar_names = "allow"
+struct_field_names = "allow"
+unnested_or_patterns = "allow"
+wildcard_imports = "allow"
+
+[lints.clippy.pedantic]
+level = "warn"
+priority = -100
+
+[package]
+authors = ["Steven Fackler <sfackler@gmail.com>", "Kornel <kornel@geekhood.net>"]
+autobenches = false
+autobins = false
+autoexamples = false
+autolib = false
+autotests = false
+categories = ["os::macos-apis", "cryptography", "api-bindings"]
+description = "Security.framework bindings for macOS and iOS"
+documentation = "https://docs.rs/security_framework"
+edition = "2024"
+exclude = ["test/*"]
+homepage = "https://lib.rs/crates/security_framework"
+keywords = ["iOS", "TLS", "SSL", "crypto", "keychain"]
+license = "MIT OR Apache-2.0"
+name = "security-framework"
+readme = "README.md"
+repository = "https://github.com/kornelski/rust-security-framework"
+resolver = "2"
+rust-version = "1.85"
+version = "3.7.0"
+
+[package.metadata.docs.rs]
+features = ["OSX_10_15"]
+targets = ["x86_64-apple-darwin", "aarch64-apple-ios"]

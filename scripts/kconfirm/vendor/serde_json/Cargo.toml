@@ -1,0 +1,91 @@
+[dependencies.indexmap]
+optional = true
+version = "2.2.3"
+
+[dependencies.itoa]
+version = "1.0"
+
+[dependencies.memchr]
+default-features = false
+version = "2"
+
+[dependencies.serde_core]
+default-features = false
+version = "1.0.220"
+
+[dependencies.zmij]
+version = "1.0"
+
+[dev-dependencies.automod]
+version = "1.0.11"
+
+[dev-dependencies.indoc]
+version = "2.0.2"
+
+[dev-dependencies.ref-cast]
+version = "1.0.18"
+
+[dev-dependencies.rustversion]
+version = "1.0.13"
+
+[dev-dependencies.serde]
+features = ["derive"]
+version = "1.0.194"
+
+[dev-dependencies.serde_bytes]
+version = "0.11.10"
+
+[dev-dependencies.serde_derive]
+version = "1.0.166"
+
+[dev-dependencies.serde_stacker]
+version = "0.1.8"
+
+[dev-dependencies.trybuild]
+features = ["diff"]
+version = "1.0.108"
+
+[features]
+alloc = ["serde_core/alloc"]
+arbitrary_precision = []
+default = ["std"]
+float_roundtrip = []
+preserve_order = ["indexmap", "std"]
+raw_value = []
+std = ["memchr/std", "serde_core/std"]
+unbounded_depth = []
+
+[lib]
+name = "serde_json"
+path = "src/lib.rs"
+
+[package]
+authors = ["Erick Tryzelaar <erick.tryzelaar@gmail.com>", "David Tolnay <dtolnay@gmail.com>"]
+autobenches = false
+autobins = false
+autoexamples = false
+autolib = false
+autotests = false
+categories = ["encoding", "parser-implementations", "no-std"]
+description = "A JSON serialization file format"
+documentation = "https://docs.rs/serde_json"
+edition = "2021"
+keywords = ["json", "serde", "serialization"]
+license = "MIT OR Apache-2.0"
+name = "serde_json"
+readme = "README.md"
+repository = "https://github.com/serde-rs/json"
+rust-version = "1.68"
+version = "1.0.149"
+
+[package.metadata.docs.rs]
+features = ["preserve_order", "raw_value", "unbounded_depth"]
+rustdoc-args = ["--generate-link-to-definition", "--generate-macro-expansion", "--extern-html-root-url=core=https://doc.rust-lang.org", "--extern-html-root-url=alloc=https://doc.rust-lang.org", "--extern-html-root-url=std=https://doc.rust-lang.org"]
+targets = ["x86_64-unknown-linux-gnu"]
+
+[package.metadata.playground]
+features = ["float_roundtrip", "raw_value", "unbounded_depth"]
+
+[target."cfg(any())".dependencies.serde]
+default-features = false
+version = "1.0.220"

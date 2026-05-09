@@ -1,0 +1,16 @@
+[package]
+name = "kconfirm-lib"
+version = "0.9.0"
+edition = "2024"
+rust-version.workspace = true
+
+[dependencies]
+nom-kconfig = { workspace = true }
+log = { workspace = true }
+env_logger = { workspace = true }
+ureq = { version = "3.3", default-features = false, features = ["native-tls"] }
+regex = { version = "1.12", default-features = false }
+
+[features]
+default = []
+coreboot = ["nom-kconfig/coreboot"]

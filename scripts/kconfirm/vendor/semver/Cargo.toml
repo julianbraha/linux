@@ -1,0 +1,51 @@
+[dependencies.serde]
+default-features = false
+optional = true
+package = "serde_core"
+version = "1.0.220"
+
+[features]
+default = ["std"]
+serde = ["dep:serde"]
+std = []
+
+[lib]
+name = "semver"
+path = "src/lib.rs"
+
+[package]
+authors = ["David Tolnay <dtolnay@gmail.com>"]
+autobenches = false
+autobins = false
+autoexamples = false
+autolib = false
+autotests = false
+categories = ["data-structures", "no-std"]
+description = "Parser and evaluator for Cargo's flavor of Semantic Versioning"
+documentation = "https://docs.rs/semver"
+edition = "2021"
+exclude = ["build.rs"]
+keywords = ["cargo"]
+license = "MIT OR Apache-2.0"
+name = "semver"
+readme = "README.md"
+repository = "https://github.com/dtolnay/semver"
+rust-version = "1.68"
+version = "1.0.28"
+
+[package.metadata.docs.rs]
+features = ["serde"]
+rustdoc-args = ["--generate-link-to-definition", "--generate-macro-expansion", "--extern-html-root-url=core=https://doc.rust-lang.org", "--extern-html-root-url=alloc=https://doc.rust-lang.org", "--extern-html-root-url=std=https://doc.rust-lang.org"]
+targets = ["x86_64-unknown-linux-gnu"]
+
+[package.metadata.playground]
+features = ["serde"]
+
+[target."cfg(any())".dependencies.serde]
+default-features = false
+optional = true
+version = "1.0.220"
+
+[target."cfg(not(miri))".dev-dependencies.criterion]
+default-features = false
+version = "0.8"

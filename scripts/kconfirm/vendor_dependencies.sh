@@ -1,0 +1,1 @@
+cargo vendor-filterer   --platform "*-unknown-linux-gnu"   --tier 2      --exclude-crate-path curl-sys#curl   --exclude-crate-path libz-sys#src/zlib   --exclude-crate-path libz-sys#src/*.c   --exclude-crate-path libz-sys#src/zlib-ng   --exclude-crate-path ring#pregenerated/*.o   --exclude-crate-path "*#tests"   --exclude-crate-path "*#*.md"

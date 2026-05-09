@@ -1,0 +1,33 @@
+[dependencies.windows-sys]
+features = ["Win32_Foundation", "Win32_Security_Cryptography", "Win32_Security_Authentication_Identity", "Win32_Security_Credentials", "Win32_System_LibraryLoader", "Win32_System_Memory", "Win32_System_SystemInformation"]
+version = "0.61"
+
+[dev-dependencies.windows-sys]
+features = ["Win32_System_SystemInformation", "Win32_System_Time"]
+version = "0.61"
+
+[lib]
+name = "schannel"
+path = "src/lib.rs"
+
+[package]
+authors = ["Steven Fackler <sfackler@gmail.com>", "Steffen Butzer <steffen.butzer@outlook.com>"]
+autobenches = false
+autobins = false
+autoexamples = false
+autolib = false
+autotests = false
+description = "Schannel bindings for rust, allowing SSL/TLS (e.g. https) without openssl"
+documentation = "https://docs.rs/schannel/0.1.19/schannel/"
+edition = "2018"
+include = ["/src/", "LICENSE.md", "README.md"]
+keywords = ["windows", "schannel", "tls", "ssl", "https"]
+license = "MIT"
+name = "schannel"
+readme = "README.md"
+repository = "https://github.com/steffengy/schannel-rs"
+rust-version = "1.71.0"
+version = "0.1.29"
+
+[package.metadata.docs.rs]
+default-target = "x86_64-pc-windows-msvc"

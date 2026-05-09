@@ -2225,7 +2225,7 @@ endif
 # Scripts to check various things for consistency
 # ---------------------------------------------------------------------------
 
-PHONY += includecheck versioncheck coccicheck
+PHONY += includecheck versioncheck coccicheck kconfirm
 
 includecheck:
 	find $(srctree)/* $(RCS_FIND_IGNORE) \
@@ -2239,6 +2239,15 @@ versioncheck:
 
 coccicheck:
 	$(Q)$(BASH) $(srctree)/scripts/$@
+
+kconfirm:
+	$(Q)$(MAKE) -C scripts/kconfirm
+
+# kconfirm is compiled and has its own build artifacts
+PHONY += kconfirmclean
+
+kconfirmclean:
+	$(Q)$(MAKE) -C scripts/kconfirm clean
 
 PHONY += checkstack kernelrelease kernelversion image_name
 

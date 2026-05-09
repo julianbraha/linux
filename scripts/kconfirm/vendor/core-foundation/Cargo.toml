@@ -1,0 +1,62 @@
+[dependencies.core-foundation-sys]
+default-features = false
+version = "0.8"
+
+[dependencies.libc]
+version = "0.2"
+
+[dependencies.uuid]
+optional = true
+version = "1"
+
+[features]
+default = ["link"]
+link = ["core-foundation-sys/link"]
+mac_os_10_7_support = ["core-foundation-sys/mac_os_10_7_support"]
+mac_os_10_8_features = ["core-foundation-sys/mac_os_10_8_features"]
+with-uuid = ["dep:uuid"]
+
+[lib]
+name = "core_foundation"
+path = "src/lib.rs"
+
+[lints.clippy]
+assertions_on_constants = "allow"
+doc_markdown = "warn"
+len_without_is_empty = "allow"
+manual_range_contains = "allow"
+missing_safety_doc = "allow"
+new_ret_no_self = "allow"
+new_without_default = "allow"
+non_canonical_partial_ord_impl = "allow"
+not_unsafe_ptr_arg_deref = "allow"
+result_unit_err = "allow"
+too_many_arguments = "allow"
+type_complexity = "allow"
+
+[lints.rust.unexpected_cfgs]
+check-cfg = ['cfg(feature, values("cargo-clippy"))']
+level = "warn"
+priority = 0
+
+[package]
+authors = ["The Servo Project Developers"]
+autobenches = false
+autobins = false
+autoexamples = false
+autolib = false
+autotests = false
+categories = ["os::macos-apis"]
+description = "Bindings to Core Foundation for macOS"
+edition = "2021"
+keywords = ["macos", "framework", "objc"]
+license = "MIT OR Apache-2.0"
+name = "core-foundation"
+readme = false
+repository = "https://github.com/servo/core-foundation-rs"
+rust-version = "1.65"
+version = "0.10.1"
+
+[package.metadata.docs.rs]
+all-features = true
+default-target = "x86_64-apple-darwin"

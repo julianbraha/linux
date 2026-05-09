@@ -1,0 +1,127 @@
+[dependencies.alloc]
+optional = true
+package = "rustc-std-workspace-alloc"
+version = "1.0.0"
+
+[dependencies.allocator-api2]
+default-features = false
+features = ["alloc"]
+optional = true
+version = "0.2.9"
+
+[dependencies.core]
+optional = true
+package = "rustc-std-workspace-core"
+version = "1.0.0"
+
+[dependencies.equivalent]
+default-features = false
+optional = true
+version = "1.0"
+
+[dependencies.foldhash]
+default-features = false
+optional = true
+version = "0.2.0"
+
+[dependencies.rayon]
+optional = true
+version = "1.9.0"
+
+[dependencies.serde_core]
+default-features = false
+optional = true
+version = "1.0.221"
+
+[dev-dependencies.bumpalo]
+features = ["allocator-api2"]
+version = "3.13.0"
+
+[dev-dependencies.criterion]
+features = ["html_reports"]
+version = "0.7"
+
+[dev-dependencies.fnv]
+version = "1.0.7"
+
+[dev-dependencies.rand]
+features = ["small_rng"]
+version = "0.9.0"
+
+[dev-dependencies.rayon]
+version = "1.2"
+
+[dev-dependencies.serde_test]
+version = "1.0"
+
+[features]
+default = ["default-hasher", "inline-more", "allocator-api2", "equivalent", "raw-entry"]
+default-hasher = ["dep:foldhash"]
+inline-more = []
+nightly = ["foldhash?/nightly", "bumpalo/allocator_api"]
+raw-entry = []
+rustc-dep-of-std = ["nightly", "core", "alloc", "rustc-internal-api"]
+rustc-internal-api = []
+serde = ["dep:serde_core", "dep:serde"]
+
+[lib]
+name = "hashbrown"
+path = "src/lib.rs"
+
+[lints.clippy]
+borrow_as_ptr = "warn"
+doc_markdown = "allow"
+manual_let_else = "warn"
+manual_map = "allow"
+missing_errors_doc = "allow"
+missing_safety_doc = "allow"
+module_name_repetitions = "allow"
+must_use_candidate = "allow"
+needless_continue = "warn"
+option_if_let_else = "allow"
+ptr_as_ptr = "warn"
+ptr_cast_constness = "warn"
+redundant_else = "warn"
+ref_as_ptr = "warn"
+semicolon_if_nothing_returned = "warn"
+str_to_string = "warn"
+
+[lints.rust]
+bare_trait_objects = "warn"
+elided_lifetimes_in_paths = "warn"
+ellipsis_inclusive_range_patterns = "warn"
+explicit_outlives_requirements = "warn"
+missing_docs = "warn"
+unreachable_pub = "warn"
+unsafe_op_in_unsafe_fn = "warn"
+unused_extern_crates = "warn"
+
+[package]
+autobenches = false
+autobins = false
+autoexamples = false
+autolib = false
+autotests = false
+categories = ["data-structures", "no-std"]
+description = "A Rust port of Google's SwissTable hash map"
+edition = "2024"
+exclude = [".github", "/ci/*"]
+keywords = ["hash", "no_std", "hashmap", "swisstable"]
+license = "MIT OR Apache-2.0"
+name = "hashbrown"
+readme = "README.md"
+repository = "https://github.com/rust-lang/hashbrown"
+rust-version = "1.85.0"
+version = "0.17.1"
+
+[package.metadata.docs.rs]
+features = ["nightly", "rayon", "serde", "raw-entry"]
+rustdoc-args = ["--generate-link-to-definition"]
+
+[target."cfg(any())".dependencies.serde]
+default-features = false
+optional = true
+version = "1.0.220"
+
+[target."cfg(unix)".dev-dependencies.libc]
+version = "0.2.155"
