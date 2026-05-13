@@ -66,4 +66,4 @@ subdir-$(CONFIG_SECURITY_SELINUX) += selinux
 subdir-$(CONFIG_SECURITY_IPE) += ipe
 
 # Let clean descend into subdirs
-subdir-	+= basic dtc gdb kconfig mod
+subdir-	+= basic dtc gdb kconfig kconfirm mod

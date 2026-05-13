@@ -296,7 +296,7 @@ no-dot-config-targets := $(clean-targets) \
 			 $(version_h) headers headers_% archheaders archscripts \
 			 %asm-generic kernelversion %src-pkg dt_binding_check \
 			 outputmakefile rustavailable rustfmt rustfmtcheck \
-			 run-command
+			 run-command kconfirm
 no-sync-config-targets := $(no-dot-config-targets) %install modules_sign kernelrelease \
 			  image_name
 single-targets := %.a %.i %.ko %.lds %.ll %.lst %.mod %.o %.rsi %.s %/
@@ -536,6 +536,7 @@ OBJDUMP		= $(CROSS_COMPILE)objdump
 READELF		= $(CROSS_COMPILE)readelf
 STRIP		= $(CROSS_COMPILE)strip
 endif
+CARGO		= cargo
 RUSTC		= rustc
 RUSTDOC		= rustdoc
 RUSTFMT		= rustfmt
@@ -633,7 +634,7 @@ export RUSTC_BOOTSTRAP := 1
 export CLIPPY_CONF_DIR := $(srctree)
 
 export ARCH SRCARCH CONFIG_SHELL BASH HOSTCC KBUILD_HOSTCFLAGS CROSS_COMPILE LD CC HOSTPKG_CONFIG
-export RUSTC RUSTDOC RUSTFMT RUSTC_OR_CLIPPY_QUIET RUSTC_OR_CLIPPY BINDGEN LLVM_LINK
+export CARGO RUSTC RUSTDOC RUSTFMT RUSTC_OR_CLIPPY_QUIET RUSTC_OR_CLIPPY BINDGEN LLVM_LINK
 export HOSTRUSTC KBUILD_HOSTRUSTFLAGS
 export CPP AR NM STRIP OBJCOPY OBJDUMP READELF PAHOLE RESOLVE_BTFIDS LEX YACC AWK INSTALLKERNEL
 export PERL PYTHON3 CHECK CHECKFLAGS MAKE UTS_MACHINE HOSTCXX
@@ -1705,7 +1706,7 @@ MRPROPER_FILES += include/config include/generated          \
 		  vmlinux-gdb.py \
 		  rpmbuild \
 		  rust/libmacros.so rust/libmacros.dylib \
-		  rust/libpin_init_internal.so rust/libpin_init_internal.dylib
+		  rust/libpin_init_internal.so rust/libpin_init_internal.dylib \
 
 # clean - Delete most, but leave enough to build external modules
 #
@@ -2227,7 +2228,7 @@ endif
 # Scripts to check various things for consistency
 # ---------------------------------------------------------------------------
 
-PHONY += includecheck versioncheck coccicheck
+PHONY += includecheck versioncheck coccicheck kconfirm
 
 includecheck:
 	find $(srctree)/* $(RCS_FIND_IGNORE) \
@@ -2241,6 +2242,12 @@ versioncheck:
 
 coccicheck:
 	$(Q)$(BASH) $(srctree)/scripts/$@
+
+
+kconfirm:
+	$(Q)$(MAKE) -C $(srctree)/scripts/kconfirm srctree=$(abs_srctree) SRCARCH=$(SRCARCH) || \
+		(printf "\n  kconfirm failed to compile and run. Have you set up its dependencies yet?\n  See Documentation/dev-tools/kconfirm.rst\n\n" && false)
+clean-dirs += scripts/kconfirm
 
 PHONY += checkstack kernelrelease kernelversion image_name
 
